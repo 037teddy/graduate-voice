@@ -6,7 +6,6 @@ import { errorText, getSupabase, rpc, timeAgo } from "@/lib/supabase";
 import type { Message } from "@/lib/types";
 
 const MAX_LEN = 1000;
-const REMINDER_KEY = "agv-reminder-ack";
 
 function mergeMessage(list: Message[], m: Message): Message[] {
   const i = list.findIndex((x) => x.id === m.id);
@@ -24,7 +23,6 @@ export default function Chat({ onIssueCreated }: { onIssueCreated: () => void })
   const [replyTo, setReplyTo] = useState<Message | null>(null);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [showReminder, setShowReminder] = useState(false);
   const [openMenu, setOpenMenu] = useState<number | null>(null);
   const [revealed, setRevealed] = useState<Record<number, string>>({});
   const [toast, setToast] = useState<string | null>(null);
@@ -114,11 +112,6 @@ export default function Chat({ onIssueCreated }: { onIssueCreated: () => void })
       void supabase.removeChannel(channel);
     };
   }, [load, fetchNewer]);
-
-  useEffect(() => {
-    const t = window.setTimeout(() => setShowReminder(!localStorage.getItem(REMINDER_KEY)), 0);
-    return () => window.clearTimeout(t);
-  }, []);
 
   useLayoutEffect(() => {
     const el = scroller.current;
@@ -216,10 +209,6 @@ export default function Chat({ onIssueCreated }: { onIssueCreated: () => void })
     }
   }
 
-  function dismissReminder() {
-    localStorage.setItem(REMINDER_KEY, "1");
-    setShowReminder(false);
-  }
 
   const byId = new Map(messages.map((m) => [m.id, m]));
 
@@ -352,18 +341,6 @@ export default function Chat({ onIssueCreated }: { onIssueCreated: () => void })
       )}
 
       <div className="border-t border-slate-200 bg-white p-3">
-        {showReminder && (
-          <div className="mb-2 flex items-start gap-2 rounded-lg bg-amber-50 p-2 text-xs text-amber-900">
-            <p className="flex-1">
-              Before you post: your nickname hides your name, but details like your exact
-              course, room or personal story can still identify you. Share only what you are
-              comfortable with.
-            </p>
-            <button onClick={dismissReminder} className="font-semibold underline">
-              Got it
-            </button>
-          </div>
-        )}
         {replyTo && (
           <div className="mb-2 flex items-center gap-2 rounded-lg bg-slate-100 px-2 py-1 text-xs text-slate-600">
             <span className="flex-1 truncate">
