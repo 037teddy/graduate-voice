@@ -40,8 +40,7 @@ export default function JoinScreen() {
 
       {status === "not_configured" ? (
         <div className="rounded-lg border border-amber-300 bg-amber-50 p-4 text-sm text-amber-900">
-          The app is not connected to a database yet. Copy <code>.env.example</code> to{" "}
-          <code>.env.local</code> and add your Supabase URL and key (see README).
+          The app is temporarily unavailable. Please try again later.
         </div>
       ) : (
         <form onSubmit={submit} className="flex flex-col gap-3">
@@ -79,9 +78,6 @@ export default function JoinScreen() {
         <ul className="mt-2 list-disc space-y-1 pl-5">
           <li>No name, email or phone number. Ever.</li>
           <li>You get a random nickname like “Graduate 47” on this device.</li>
-          <li>
-            Anonymity is strong but not absolute: avoid details that could identify you.
-          </li>
         </ul>
         <Link href="/privacy" className="mt-2 inline-block font-medium text-indigo-700 underline">
           Read the full privacy note

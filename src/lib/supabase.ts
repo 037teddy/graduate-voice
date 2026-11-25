@@ -16,7 +16,7 @@ export function getSupabase(): SupabaseClient {
   const key = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
   if (!url || !key) {
     throw new Error(
-      "Supabase is not configured. Copy .env.example to .env.local and fill in your project URL and key.",
+      "The app is temporarily unavailable. Please try again later.",
     );
   }
   client = createClient(url, key, {

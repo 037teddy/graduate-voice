@@ -43,26 +43,6 @@ export default function PrivacyPage() {
       </section>
 
       <section>
-        <h2 className="font-semibold text-slate-900">The honest limits</h2>
-        <ul className="mt-2 list-disc space-y-1 pl-5">
-          <li>
-            Everything you write under one nickname is linked. Small details added together
-            (your exact course, a personal story, writing style) can reveal who you are in a
-            small class. Share only what you are comfortable with.
-          </li>
-          <li>
-            The hosting companies (Vercel and Supabase) keep their own short-term technical logs,
-            which can include IP addresses, like almost every website.
-          </li>
-          <li>
-            The person who manages the database could, in principle, read the stored data. They
-            still cannot see names, because names are never stored.
-          </li>
-          <li>Moderators can read hidden messages. Every moderator action is logged.</li>
-        </ul>
-      </section>
-
-      <section>
         <h2 className="font-semibold text-slate-900">What the administration receives</h2>
         <p className="mt-2">
           Only the exported report: the top issues, how many graduates support each one, and
